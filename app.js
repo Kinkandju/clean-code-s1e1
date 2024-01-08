@@ -33,7 +33,7 @@ function createNewTaskElement(taskString) {
   listItem.appendChild(deleteButton);
 
   return listItem;
-};
+}
 
 function addTask() {
   if (!taskInput.value) return;
@@ -43,7 +43,7 @@ function addTask() {
   bindTaskEvents(listItem, taskCompleted);
 
   taskInput.value = '';
-};
+}
 
 function editTask() {
   const listItem = this.parentNode;
@@ -62,30 +62,30 @@ function editTask() {
   }
 
   listItem.classList.toggle('editMode');
-};
+}
 
 function deleteTask() {
   const listItem = this.parentNode;
   const ul = listItem.parentNode;
 
   ul.removeChild(listItem);
-};
+}
 
 function taskCompleted() {
   const listItem = this.parentNode;
   completedTasksHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskIncomplete);
-};
+}
 
 function taskIncomplete() {
   const listItem = this.parentNode;
   incompleteTaskHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskCompleted);
-};
+}
 
 function ajaxRequest() {
   console.log('AJAX Request');
-};
+}
 
 addButton.onclick = addTask;
 addButton.addEventListener('click', addTask);
@@ -99,7 +99,7 @@ function bindTaskEvents(taskListItem, checkBoxEventHandler) {
   editButton.onclick = editTask;
   deleteButton.onclick = deleteTask;
   checkBox.onchange = checkBoxEventHandler;
-};
+}
 
 for (let i = 0; i < incompleteTaskHolder.children.length; i += 1) {
   bindTaskEvents(incompleteTaskHolder.children[i], taskCompleted);
