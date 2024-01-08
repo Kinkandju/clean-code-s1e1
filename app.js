@@ -42,7 +42,6 @@ function createNewTask(task) {
 
 function editTask() {
   const listItem = this.parentNode;
-
   const textInput = listItem.querySelector('.item__entry');
   const label = listItem.querySelector('.item__label');
   const editButton = listItem.querySelector('.button_edit');
@@ -65,44 +64,50 @@ function deleteTask() {
   ul.removeChild(listItem);
 }
 
-function bindTaskEvents(taskListItem, checkBoxEventHandler) {
-  const checkBox = taskListItem.querySelector('.item__checkbox');
-  const editButton = taskListItem.querySelector('.button_edit');
-  const deleteButton = taskListItem.querySelector('.button_remove');
+function bindTaskEvents(taskItem, checkboxEventHandler) {
+  const checkboxInput = taskItem.querySelector('.item__checkbox');
+  const editButton = taskItem.querySelector('.button_edit');
+  const deleteButton = taskItem.querySelector('.button_remove');
 
   editButton.onclick = editTask;
   deleteButton.onclick = deleteTask;
-  checkBox.onchange = checkBoxEventHandler;
+  checkboxInput.onchange = checkboxEventHandler;
 }
 
-function taskIncomplete() {
-  const listItem = this.parentNode;
-  todoList.appendChild(listItem);
-  bindTaskEvents(listItem, taskCompleted);
+function moveTask(listItem, targetList, eventHandler) {
+  targetList.appendChild(listItem);
+
+  bindTaskEvents(listItem, eventHandler);
 }
 
-function taskCompleted() {
+function incompleteTask() {
   const listItem = this.parentNode;
-  completedList.appendChild(listItem);
-  bindTaskEvents(listItem, taskIncomplete);
+
+  moveTask(listItem, todoList, completedTask);
+}
+
+function completedTask() {
+  const listItem = this.parentNode;
+
+  moveTask(listItem, completedList, incompleteTask);
 }
 
 function addTask() {
   if (!taskInput.value) return;
+
   const listItem = createNewTask(taskInput.value);
 
-  todoList.appendChild(listItem);
-  bindTaskEvents(listItem, taskCompleted);
+  moveTask(listItem, todoList, completedTask);
 
   taskInput.value = '';
 }
 
 addButton.addEventListener('click', addTask);
 
-for (let i = 0; i < todoList.children.length; i += 1) {
-  bindTaskEvents(todoList.children[i], taskCompleted);
-}
+Array.from(todoList.children).forEach((child) => {
+  bindTaskEvents(child, completedTask);
+});
 
-for (let i = 0; i < completedList.children.length; i += 1) {
-  bindTaskEvents(completedList.children[i], taskIncomplete);
-}
+Array.from(completedList.children).forEach((child) => {
+  bindTaskEvents(child, incompleteTask);
+});
