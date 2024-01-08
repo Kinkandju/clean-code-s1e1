@@ -209,7 +209,7 @@
   }
   
   /* Edit task */
-  .list__item .entry,
+  .item__entry,
   .item_edit .item__label {
     display: none;
   }
