@@ -3,7 +3,7 @@ const addButton = document.getElementsByTagName('button')[0];
 const incompleteTaskHolder = document.getElementById('incompleteTasks');
 const completedTasksHolder = document.getElementById('completed-tasks');
 
-const createNewTaskElement = function (taskString) {
+function createNewTaskElement(taskString) {
   const listItem = document.createElement('li');
   const checkBox = document.createElement('input');
   const label = document.createElement('label');
@@ -35,7 +35,7 @@ const createNewTaskElement = function (taskString) {
   return listItem;
 };
 
-const addTask = function () {
+function addTask() {
   if (!taskInput.value) return;
   const listItem = createNewTaskElement(taskInput.value);
 
@@ -45,7 +45,7 @@ const addTask = function () {
   taskInput.value = '';
 };
 
-const editTask = function () {
+function editTask() {
   const listItem = this.parentNode;
 
   const editInput = listItem.querySelector('input[type=text]');
@@ -64,26 +64,26 @@ const editTask = function () {
   listItem.classList.toggle('editMode');
 };
 
-const deleteTask = function () {
+function deleteTask() {
   const listItem = this.parentNode;
   const ul = listItem.parentNode;
 
   ul.removeChild(listItem);
 };
 
-const taskCompleted = function () {
+function taskCompleted() {
   const listItem = this.parentNode;
   completedTasksHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskIncomplete);
 };
 
-const taskIncomplete = function () {
+function taskIncomplete() {
   const listItem = this.parentNode;
   incompleteTaskHolder.appendChild(listItem);
   bindTaskEvents(listItem, taskCompleted);
 };
 
-const ajaxRequest = function () {
+function ajaxRequest() {
   console.log('AJAX Request');
 };
 
@@ -91,7 +91,7 @@ addButton.onclick = addTask;
 addButton.addEventListener('click', addTask);
 addButton.addEventListener('click', ajaxRequest);
 
-const bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
+function bindTaskEvents(taskListItem, checkBoxEventHandler) {
   const checkBox = taskListItem.querySelector('input[type=checkbox]');
   const editButton = taskListItem.querySelector('button.edit');
   const deleteButton = taskListItem.querySelector('button.delete');
