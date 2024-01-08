@@ -83,13 +83,8 @@ function taskIncomplete() {
   bindTaskEvents(listItem, taskCompleted);
 }
 
-function ajaxRequest() {
-  console.log('AJAX Request');
-}
-
 addButton.onclick = addTask;
 addButton.addEventListener('click', addTask);
-addButton.addEventListener('click', ajaxRequest);
 
 function bindTaskEvents(taskListItem, checkBoxEventHandler) {
   const checkBox = taskListItem.querySelector('input[type=checkbox]');
