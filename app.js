@@ -3,34 +3,31 @@ const addButton = document.querySelector('.add-task__button');
 const todoList = document.querySelector('.todo-tasks__list');
 const completedList = document.querySelector('.completed-tasks__list');
 
-function createNewTaskElement(taskString) {
-  const listItem = document.createElement('li');
-  listItem.classList.add('list__item');
-  listItem.classList.add('item');
+function createElementWithClasses(tag, classes) {
+  const element = document.createElement(tag);
+  element.classList.add(...classes);
 
-  const checkboxInput = document.createElement('input');
+  return element;
+}
+
+function createNewTask(task) {
+  const listItem = createElementWithClasses('li', ['list__item', 'item']);
+  const checkboxInput = createElementWithClasses('input', ['item__checkbox']);
   checkboxInput.type = 'checkbox';
-  checkboxInput.className = 'item__checkbox';
 
-  const label = document.createElement('label');
-  label.innerText = taskString;
-  label.className = 'item__label';
+  const label = createElementWithClasses('label', ['item__label']);
+  label.innerText = task;
 
-  const textInput = document.createElement('input');
+  const textInput = createElementWithClasses('input', ['item__entry', 'entry']);
   textInput.type = 'text';
-  textInput.className = 'item__entry entry';
 
-  const editButton = document.createElement('button');
+  const editButton = createElementWithClasses('button', ['item__button', 'button', 'button_edit']);
   editButton.innerText = 'Edit';
-  editButton.className = 'item__button button button_edit';
 
-  const deleteButton = document.createElement('button');
-  deleteButton.className = 'item__button button button_remove';
-
-  const deleteButtonImg = document.createElement('img');
+  const deleteButton = createElementWithClasses('button', ['item__button', 'button', 'button_remove']);
+  const deleteButtonImg = createElementWithClasses('img', ['button__image']);
   deleteButtonImg.src = './remove.svg';
   deleteButtonImg.alt = 'button remove';
-  deleteButtonImg.className = 'button__image';
 
   deleteButton.appendChild(deleteButtonImg);
 
@@ -69,7 +66,7 @@ function deleteTask() {
 }
 
 function bindTaskEvents(taskListItem, checkBoxEventHandler) {
-  const checkBox = taskListItem.querySelector('input[type=checkbox]');
+  const checkBox = taskListItem.querySelector('.item__checkbox');
   const editButton = taskListItem.querySelector('.button_edit');
   const deleteButton = taskListItem.querySelector('.button_remove');
 
@@ -92,7 +89,7 @@ function taskCompleted() {
 
 function addTask() {
   if (!taskInput.value) return;
-  const listItem = createNewTaskElement(taskInput.value);
+  const listItem = createNewTask(taskInput.value);
 
   todoList.appendChild(listItem);
   bindTaskEvents(listItem, taskCompleted);
