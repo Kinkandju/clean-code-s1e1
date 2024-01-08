@@ -25,7 +25,7 @@ function createNewTask(task) {
   editButton.innerText = 'Edit';
 
   const deleteButton = createElementWithClasses('button', ['item__button', 'button', 'button_remove']);
-  const deleteButtonImg = createElementWithClasses('img', ['button__image']);
+  const deleteButtonImg = createElementWithClasses('img', ['button__img']);
   deleteButtonImg.src = './remove.svg';
   deleteButtonImg.alt = 'button remove';
 
