@@ -16,12 +16,6 @@
     box-sizing: border-box;
   }
   
-  *,
-  *::before,
-  *::after {
-    box-sizing: inherit;
-  }
-  
   ul {
     margin: 0;
     padding: 0;
@@ -38,11 +32,11 @@
   .visually-hidden:not(:focus):not(:active) {
     position: absolute;
   
-    width: 1px;
-    height: 1px;
-  
     margin: -1px;
     padding: 0;
+
+    width: 1px;
+    height: 1px;
   
     border: 0;
   
@@ -55,18 +49,22 @@
   
   /* Basic styles */
   .page {
-    background-color: var(--background-color-page);
-    color: var(--color-text-dark-gray);
     font-family: var(--font-family);
+
+    color: var(--color-text-dark-gray);
+    background-color: var(--background-color-page);
   }
   
   .button {
+    font-family: var(--font-family);
+    font-size: 15px;
+
+    width: 60px;
+
+    color: var(--color-text-light-gray);
     background: none;
     border: 0;
-    color: var(--color-text-light-gray);
-    font-size: 15px;
-    width: 60px;
-    font-family: var(--font-family);
+
     cursor: pointer;
   }
   
@@ -75,16 +73,19 @@
   }
   
   .entry {
-    margin: 0;
+    font-family: var(--font-family);
     font-size: 18px;
     line-height: 18px;
-    height: 21px;
+
+    margin: 0;
     padding: 0 9px;
-    border: 1px solid var(--border-color-entry);
-    background: var(--background-color-entry);
-    border-radius: 6px;
-    font-family: var(--font-family);
+    
+    height: 21px;
+    
     color: var(--color-text-light-gray);
+    background: var(--background-color-entry);
+    border: 1px solid var(--border-color-entry);
+    border-radius: 6px;
   }
   
   .entry:focus {
@@ -93,10 +94,11 @@
   
   /* Header styles */
   .header {
-    width: 500px;
-    margin: 0 auto;
-    display: block;
     text-align: right;
+
+    margin: 0 auto;
+
+    width: 500px;
   }
   
   .header__picture {
@@ -116,20 +118,24 @@
   /* Heading styles */
   .add-task__headline,
   .main__caption {
-    color: var(--color-text-dark-gray);
-    font-weight: 700;
     font-size: 15px;
-    border-bottom: 2px solid var(--color-text-dark-gray);
-    padding: 30px 0 10px;
-    margin: 0;
+    font-weight: 700;
     text-transform: uppercase;
+
+    margin: 0;
+    padding: 30px 0 10px;
+
+    color: var(--color-text-dark-gray);
+    border-bottom: 2px solid var(--color-text-dark-gray);
   }
   
   /* Main styles */
   .main__wrapper {
     display: block;
-    width: 500px;
+
     margin: 0 auto 0;
+
+    width: 500px;
   }
   
   /* New Task */
@@ -139,6 +145,7 @@
   
   .add-task__headline {
     display: block;
+
     margin: 0 0 20px;
   }
   
@@ -148,13 +155,15 @@
   
   /* Task list */
   .list__item {
-    overflow: hidden;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border-color-list-item);
-  
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    padding: 20px 0;
+
+    border-bottom: 1px solid var(--border-color-list-item);
+  
+    overflow: hidden;
   }
   
   .list__item {
@@ -167,15 +176,16 @@
   
   .item__label,
   .entry {
-    width: 56%;
-    display: inline-block;
     flex-grow: 1;
+
+    width: 56%;
   }
   
   .item__label {
-    padding-left: 10px;
-    box-sizing: border-box;
     font-size: 18px;
+
+    padding-left: 10px;
+    
     width: 226px;
   }
   
@@ -185,6 +195,7 @@
   
   .button__image {
     height: 2em;
+
     transform: rotateZ(45deg);
     transition: transform 200ms ease-in;
   }
@@ -196,20 +207,19 @@
   /* Completed */
   .completed-tasks__list .item__label {
     text-decoration: line-through;
+
     color: var(--color-text-light-gray);
   }
   
   /* Edit Task */
-  .list__item .entry {
+  .list__item .entry,
+  .item_edit .item__label {
     display: none;
   }
   
   .item_edit .item__entry {
     display: inline-block;
+
     width: 224px;
-  }
-  
-  .item_edit .item__label {
-    display: none;
   }
   
